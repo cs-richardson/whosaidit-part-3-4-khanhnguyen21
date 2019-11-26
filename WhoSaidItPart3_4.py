@@ -49,20 +49,20 @@ def normalize(word):
 def get_counts(filename):
     words = []
     resultDict = {"_total":0}
-    word = ''
-    f = open(filename,"r")
-    for x in f:
-        x = x.translate(translator)
-        words = x.split()
-        for y in words:
-            if y.isalpha():
-                word = normalize(y)
+    file = open(filename,"r")
+    for line in file:
+        line = line.translate(translator)
+        words = line.split()
+        for word in words:
+            if word.isalpha():
+                word = normalize(word)
                 if word in resultDict:
                     resultDict[word] = resultDict[word] + 1
                 else:
                     resultDict[word] = 1
                 resultDict["_total"] = resultDict["_total"] + 1
-    f.close()
+      
+    file.close()
     return resultDict
 
 # getCountP
@@ -74,8 +74,8 @@ def getScorePerson(text, dictionary):
     words = []
     text = text.translate(translator)
     words = text.split()
-    for x in words:
-        word = normalize(x)
+    for word in words:
+        word = normalize(word)
         total = total + get_score(word, dictionary)
     return total
 
@@ -91,7 +91,7 @@ scoreAusten = getScorePerson(textInput, austen_counts)
 scoreSp = getScorePerson(textInput, shakespeare_counts)
 
 if scoreAusten > scoreSp:
-    print('I think it was written by Austen')
+    print('I think it was written by Jane Austen')
 elif scoreSp > scoreAusten:
     print('I think it was written by Shakespeare')
 else:
