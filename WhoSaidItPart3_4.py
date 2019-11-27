@@ -85,7 +85,7 @@ def getScorePerson(text, dictionary):
 shakespeare_counts = get_counts("hamlet.txt")
 austen_counts = get_counts("pride_and_prejudice.txt")
 
-print('Enter some text and I will predict who its author is: Austen or Shakespeare.')
+print('Enter some text and I will predict whose its author is: Austen or Shakespeare.')
 textInput = input('Your text here: ')
 scoreAusten = getScorePerson(textInput, austen_counts)
 scoreSp = getScorePerson(textInput, shakespeare_counts)
